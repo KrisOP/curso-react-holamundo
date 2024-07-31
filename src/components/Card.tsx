@@ -1,9 +1,11 @@
+import { ReactNode } from "react";
+
 //import { Fragment } from "react";
 interface CardProps {
-  body: string;
+  children: ReactNode;
 }
 function Card(props: CardProps) {
-  const { body } = props;
+  const { children } = props;
   return (
     <div
       className="card"
@@ -13,7 +15,7 @@ function Card(props: CardProps) {
     >
       <div className="card-body">
         {/* <CardBody /> */}
-        {body}
+        {children}
       </div>
     </div>
   );

@@ -7,9 +7,11 @@ function App() {
   return  (
     <>
       <Titulo/>
-      <Card body={"Hola mundo xD"}/>
+      {/* <Card body={'Hola mundo'}/> */}
+      <Card>
+        <CardBody title={"Hola mundo xD"} text={"El texto del componente "}/>
+      </Card>
 
-      <CardBody title={"Hola mundo xD"} text={"El texto del componente "}/>
 
       
     </>
