@@ -1,6 +1,9 @@
 //import { Fragment } from "react";
-
-function Card() {
+interface CardProps{
+    body:string
+}
+function Card(props:CardProps) {
+    const {body} = props;
   return (
     <div
       className="card"
@@ -9,7 +12,8 @@ function Card() {
       }}
     >
       <div className="card-body">
-        <CardBody />
+        {/* <CardBody /> */}
+        {body}
       </div>
     </div>
   );

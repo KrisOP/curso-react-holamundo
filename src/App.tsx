@@ -6,7 +6,7 @@ function App() {
   return  (
     <>
       <Titulo/>
-      <Card/>
+      <Card body={"Hola mundo xD"}/>
       
     </>
   )
