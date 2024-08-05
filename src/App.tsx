@@ -7,55 +7,70 @@ import List from "./components/List.tsx";
 import { useState } from "react";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [Data, setData] = useState(["uno", "dos", "tres"]);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = () => setIsLoading(!isLoading);
+  // const handleClick = () => setIsLoading(!isLoading);
 
-  const list = ["uno", "dos", "tres"];
-  //const list: string[] = [];
-  const handleSelect = (element: string) => {
-    console.log("Imprimiendo " + element);
-  };
+  // const list = ["uno", "dos", "tres"];
+  // //const list: string[] = [];
+  // const handleSelect = (element: string) => {
+  //   console.log("Imprimiendo " + element);
+  // };
 
-  const handleSelect2 = (element: string) => {
-    console.log("Mostrando " + element);
-  };
+  // const handleSelect2 = (element: string) => {
+  //   console.log("Mostrando " + element);
+  // };
 
-  //si hay elementos en la lista mostrarlos
-  // const contenido = list.length ? (
+  // // si hay elementos en la lista mostrarlos
+  // // const contenido = list.length ? (
+  // //   <>
+  // //   <List data={list} onSelect={handleSelect} />
+  // //   <List data={list} onSelect={handleSelect2} /></>
+
+  // // ) : (
+  // //   "Sin elementos que mostrar"
+  // // );
+
+  // const contenido =
+  //   list.length !== 0 ? (
+  //     <>
+  //       <List data={list} onSelect={handleSelect} />
+  //       <List data={list} onSelect={handleSelect2} />
+  //     </>
+  //   ) : (
+  //     "Sin elementos que mostrar"
+  //   );
+
+  // return (
   //   <>
-  //   <List data={list} onSelect={handleSelect} />
-  //   <List data={list} onSelect={handleSelect2} /></>
+  //     <Titulo />
+  //     {/* <Card body={'Hola mundo'}/> */}
+  //     <Card>
+  //       <CardBody title={"Hola mundo xD"} text={"El texto del componente "} />
+  //       {/* <List data={list} onSelect={handleSelect} />
 
-  // ) : (
-  //   "Sin elementos que mostrar"
+  //       <List data={list} onSelect={handleSelect2} /> */}
+  //       {contenido}
+  //       <Button isLoading={isLoading} onClick={handleClick}>
+  //         Hola mundo dat
+  //       </Button>
+  //     </Card>
+  //   </>
   // );
 
-  const contenido =
-    list.length !== 0 ? (
-      <>
-        <List data={list} onSelect={handleSelect} />
-        <List data={list} onSelect={handleSelect2} />
-      </>
-    ) : (
-      "Sin elementos que mostrar"
-    );
+
+  
+  const addMinion = () => setData([...Data, "Minion"]);
+
+  const handleDelete = () => setData(Data.slice(0, -1));
 
   return (
-    <>
-      <Titulo />
-      {/* <Card body={'Hola mundo'}/> */}
-      <Card>
-        <CardBody title={"Hola mundo xD"} text={"El texto del componente "} />
-        {/* <List data={list} onSelect={handleSelect} />
-
-        <List data={list} onSelect={handleSelect2} /> */}
-        {contenido}
-        <Button isLoading={isLoading} onClick={handleClick}>
-          Hola mundo dat
-        </Button>
-      </Card>
-    </>
+    <Card>
+      <Button onClick={ addMinion} > Agregar </Button>
+      <Button onClick={ handleDelete}> Eliminar </Button>
+      <List data={Data} />
+    </Card>
   );
 }
 
