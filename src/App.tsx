@@ -67,8 +67,8 @@ function App() {
 
   return (
     <Card>
-      <Button onClick={ addMinion} > Agregar </Button>
-      <Button onClick={ handleDelete}> Eliminar </Button>
+      <Button isLoading={true} onClick={ addMinion} > Agregar </Button>
+      <Button  isLoading={false} onClick={ handleDelete}> Eliminar </Button>
       <List data={Data} />
     </Card>
   );
