@@ -5,9 +5,15 @@ type Props = {
   isLoading?: boolean;
   onClick: () => void;
 };
+const styles = {
+
+  backgroundColor: 'red',
+  
+}
 function Button({ children, isLoading, onClick }: Props) {
   return (
     <button
+      style={styles}
       disabled={isLoading}
       onClick={onClick}
       type="button"
