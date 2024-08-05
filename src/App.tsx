@@ -2,7 +2,7 @@ import "./App.css";
 import Titulo from "./Titulo.tsx";
 //import Card from './components/Card.tsx';
 import Card, { CardBody } from "./components/Card";
-import Button from "./components/Button";
+import Button from "./components/Button/Index.tsx";
 import List from "./components/List.tsx";
 import { useState } from "react";
 
