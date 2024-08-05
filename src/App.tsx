@@ -2,11 +2,17 @@ import "./App.css";
 import Titulo from "./Titulo.tsx";
 //import Card from './components/Card.tsx';
 import Card, { CardBody } from "./components/Card";
+import Button from "./components/Button";
 import List from "./components/List.tsx";
+import { useState } from "react";
 
 function App() {
-  //const list = ['uno','dos','tres'];
-  const list: string[] = [];
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = () => setIsLoading(!isLoading);
+
+  const list = ["uno", "dos", "tres"];
+  //const list: string[] = [];
   const handleSelect = (element: string) => {
     console.log("Imprimiendo " + element);
   };
@@ -20,20 +26,20 @@ function App() {
   //   <>
   //   <List data={list} onSelect={handleSelect} />
   //   <List data={list} onSelect={handleSelect2} /></>
- 
+
   // ) : (
   //   "Sin elementos que mostrar"
   // );
 
-  const contenido = list.length !== 0 ? (
-    <>
-    <List data={list} onSelect={handleSelect} />
-    <List data={list} onSelect={handleSelect2} /></>
- 
-  ) : (
-    "Sin elementos que mostrar"
-  );
-
+  const contenido =
+    list.length !== 0 ? (
+      <>
+        <List data={list} onSelect={handleSelect} />
+        <List data={list} onSelect={handleSelect2} />
+      </>
+    ) : (
+      "Sin elementos que mostrar"
+    );
 
   return (
     <>
@@ -45,6 +51,9 @@ function App() {
 
         <List data={list} onSelect={handleSelect2} /> */}
         {contenido}
+        <Button isLoading={isLoading} onClick={handleClick}>
+          Hola mundo dat
+        </Button>
       </Card>
     </>
   );
