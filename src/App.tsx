@@ -2,9 +2,14 @@ import "./App.css";
 import Titulo from "./Titulo.tsx";
 //import Card from './components/Card.tsx';
 import Card, { CardBody } from "./components/Card";
-import Button from "./components/Button/Index.tsx";
+import Button from "./components/Button";
 import List from "./components/List.tsx";
 import { useState } from "react";
+import { TodoItem } from "./components/TodoItem";
+import CreateTodoButton from "./components/CreateTodoButton";
+import { TodoCounter } from "./components/TodoCounter";
+import { TodoSearch } from "./components/TodoSearch";
+import { TodoList } from "./components/TodoList/index.tsx";
 
 function App() {
   const [Data, setData] = useState(["uno", "dos", "tres"]);
@@ -59,18 +64,35 @@ function App() {
   //   </>
   // );
 
-
-  
   const addMinion = () => setData([...Data, "Minion"]);
 
   const handleDelete = () => setData(Data.slice(0, -1));
 
+  const total = 7;
+  const completed = 5;
   return (
-    <Card>
-      <Button isLoading={true} onClick={ addMinion} > Agregar </Button>
-      <Button  isLoading={false} onClick={ handleDelete}> Eliminar </Button>
-      <List data={Data} />
-    </Card>
+    <>
+      <Card>
+        <Button isLoading={true} onClick={addMinion}>
+          Agregar
+        </Button>
+        <Button isLoading={false} onClick={handleDelete}>
+          Eliminar
+        </Button>
+        <List data={Data} />
+      </Card>
+
+      <TodoSearch />
+      <TodoCounter  total = {total} completed = {completed}/>
+
+      <TodoList>
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+      </TodoList>
+
+      <CreateTodoButton />
+    </>
   );
 }
 
