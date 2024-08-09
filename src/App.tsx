@@ -70,6 +70,14 @@ function App() {
 
   const total = 7;
   const completed = 5;
+
+  const defaultTodos = [
+    { text: "Cortar cebolla", completed: false },
+    { text: "Tomar el cursso de intro a React", completed: false },
+    { text: "Llorar con la Llorona", completed: true },
+    { text: "Nuevo", completed: true },
+  ];
+
   return (
     <>
       <Card>
@@ -86,9 +94,16 @@ function App() {
       <TodoCounter  total = {total} completed = {completed}/>
 
       <TodoList>
+
+        {/* crear un array en base otro array de objetos */}
+        {defaultTodos.map(todo => (
+          <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
+        ))}
+
+
+        {/* <TodoItem />
         <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        <TodoItem /> */}
       </TodoList>
 
       <CreateTodoButton />
