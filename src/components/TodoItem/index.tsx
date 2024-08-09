@@ -1,3 +1,4 @@
+import './todoitem.css';
 interface TodoItem {
   text: string;
   completed: boolean;
@@ -6,10 +7,16 @@ interface TodoItem {
 function TodoItem(props: TodoItem) {
   const { text, completed } = props;
   return (
-    <li>
-      <span>{completed}</span>
-      <p>{text}</p>
-      <span>X</span>
+    <li className="TodoItem">
+      <span className={`Icon Icon-check ${completed && "Icon-check--active"}`}>
+        V
+      </span>
+      <p className={`TodoItem-p ${completed && "TodoItem-p--complete"}`}>
+        {text}
+      </p>
+      <span className="Icon Icon-delete">
+        X
+      </span>
     </li>
   );
 }

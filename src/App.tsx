@@ -72,15 +72,15 @@ function App() {
   const completed = 5;
 
   const defaultTodos = [
-    { text: "Cortar cebolla", completed: false },
+    { text: "Cortar cebolla", completed: true },
     { text: "Tomar el cursso de intro a React", completed: false },
-    { text: "Llorar con la Llorona", completed: true },
+    { text: "Llorar con la Llorona", completed: false },
     { text: "Nuevo", completed: true },
   ];
 
   return (
     <>
-      <Card>
+      {/* <Card>
         <Button isLoading={true} onClick={addMinion}>
           Agregar
         </Button>
@@ -88,11 +88,13 @@ function App() {
           Eliminar
         </Button>
         <List data={Data} />
-      </Card>
+      </Card> */}
 
-      <TodoSearch />
+  
       <TodoCounter  total = {total} completed = {completed}/>
 
+      <TodoSearch />
+      
       <TodoList>
 
         {/* crear un array en base otro array de objetos */}
