@@ -69,8 +69,6 @@ function App() {
 
   const handleDelete = () => setData(Data.slice(0, -1));
 
-  
-
   const [searchValue, setSearchValue] = React.useState("");
   console.log("Los usuarios han escrito: " + searchValue + " ");
 
@@ -82,16 +80,29 @@ function App() {
   ];
 
   const [todos, setTodos] = React.useState(defaultTodos);
-  const completedTodos = todos.filter(todo => !!todo.completed).length;
+  const completedTodos = todos.filter((todo) => !!todo.completed).length;
   const totalTodos = todos.length;
 
-
-  const shearchedTodos = todos.filter(todo => {
+  const shearchedTodos = todos.filter((todo) => {
     const todoText = todo.text.toLowerCase();
     const searchText = searchValue.toLowerCase();
     return todoText.includes(searchText);
   });
 
+  const completeTodo = (text:string) => {
+    const newTodos = [...todos]
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos)
+  }
+
+
+  const deleteTodo = (text:string) => {
+    const newTodos = [...todos]
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos)
+  }
   return (
     <>
       {/* <Card>
@@ -104,22 +115,25 @@ function App() {
         <List data={Data} />
       </Card> */}
 
-  
-      <TodoCounter  total = {totalTodos} completed = {completedTodos}/>
+      <TodoCounter total={totalTodos} completed={completedTodos} />
 
       <TodoSearch
-      propSearchValue={searchValue}
-      propSetSearchValue={setSearchValue}
-   
+        propSearchValue={searchValue}
+        propSetSearchValue={setSearchValue}
       />
-      
+
+
       <TodoList>
-
         {/* crear un array en base otro array de objetos */}
-        {shearchedTodos.map(todo => (
-          <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
+        {shearchedTodos.map((todo) => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete = { () => completeTodo (todo.text) }
+            onDelete={ () => deleteTodo (todo.text) }
+          />
         ))}
-
 
         {/* <TodoItem />
         <TodoItem />

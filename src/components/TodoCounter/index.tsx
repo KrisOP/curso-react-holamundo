@@ -1,19 +1,36 @@
-import './TodoCounter.css'
+import "./TodoCounter.css";
 
 interface TodoCounter {
-    total: number;
-    completed: number;
-  }
+  total: number;
+  completed: number;
+}
 
-function TodoCounter(props: TodoCounter){
+function TodoCounter(props: TodoCounter) {
+  const { total, completed } = props;
 
-    const {total, completed} = props;
-  
-    return (
-      <h1 className='TodoCounter' >
-        Has completado <span>{completed}</span>  de <span> {total} </span>  tareas
-      </h1>
-    )
-  }
+  // if (completed === total) {
+  //   return (
+  //     <h1 className="TodoCounter">
+  //       ¡Felicidades! Has completado todas las tareas
+  //     </h1>
+  //   );
+  // } else {
+  //   return (
+  //     <h1 className="TodoCounter">
+  //       Has completado <span>{completed}</span> de <span>{total}</span> tareas
+  //     </h1>
+  //   );
+  // }
 
-  export {TodoCounter} ;
+  return completed === total ? (
+    <h1 className="TodoCounter">
+      ¡Felicidades! Has completado todas las tareas
+    </h1>
+  ) : (
+    <h1 className="TodoCounter">
+      Has completado <span>{completed}</span> de <span> {total} </span> tareas
+    </h1>
+  );
+}
+
+export { TodoCounter };
