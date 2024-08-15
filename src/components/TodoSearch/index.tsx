@@ -1,20 +1,22 @@
-import React from "react";
+import React, { ReactElement, ReactNode } from "react";
 
 import "./todosearch.css";
+interface TodoSearchProps {
+  propSearchValue: string;
+  propSetSearchValue: (value: string) => void;
+}
 
-function TodoSearch() {
-  const [searchValue, setSearchValue] = React.useState("");
+function TodoSearch(props: TodoSearchProps) {
+  const { propSearchValue, propSetSearchValue } = props;
 
-  console.log("Los usuarios han escrito: " + searchValue + " ");
-  
   return (
     <input
       className="TodoSearch"
       type="text"
       placeholder="Nueva tarea"
-      value={searchValue}
+      value={propSearchValue}
       onChange={(event) => {
-        setSearchValue(event.target.value);
+        propSetSearchValue(event.target.value);
         console.log(event.target.value);
       }}
     />

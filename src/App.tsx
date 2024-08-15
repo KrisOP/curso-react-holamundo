@@ -10,6 +10,7 @@ import CreateTodoButton from "./components/CreateTodoButton";
 import { TodoCounter } from "./components/TodoCounter";
 import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList/index.tsx";
+import React from "react";
 
 function App() {
   const [Data, setData] = useState(["uno", "dos", "tres"]);
@@ -68,8 +69,10 @@ function App() {
 
   const handleDelete = () => setData(Data.slice(0, -1));
 
-  const total = 7;
-  const completed = 5;
+  
+
+  const [searchValue, setSearchValue] = React.useState("");
+  console.log("Los usuarios han escrito: " + searchValue + " ");
 
   const defaultTodos = [
     { text: "Cortar cebolla", completed: true },
@@ -77,6 +80,10 @@ function App() {
     { text: "Llorar con la Llorona", completed: false },
     { text: "Nuevo", completed: true },
   ];
+
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const completedTodos = todos.filter(todo => !!todo.completed).length;
+  const totalTodos = todos.length;
 
   return (
     <>
@@ -91,9 +98,13 @@ function App() {
       </Card> */}
 
   
-      <TodoCounter  total = {total} completed = {completed}/>
+      <TodoCounter  total = {totalTodos} completed = {completedTodos}/>
 
-      <TodoSearch />
+      <TodoSearch
+      propSearchValue={searchValue}
+      propSetSearchValue={setSearchValue}
+   
+      />
       
       <TodoList>
 
