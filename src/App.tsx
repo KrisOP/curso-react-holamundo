@@ -85,6 +85,13 @@ function App() {
   const completedTodos = todos.filter(todo => !!todo.completed).length;
   const totalTodos = todos.length;
 
+
+  const shearchedTodos = todos.filter(todo => {
+    const todoText = todo.text.toLowerCase();
+    const searchText = searchValue.toLowerCase();
+    return todoText.includes(searchText);
+  });
+
   return (
     <>
       {/* <Card>
@@ -109,7 +116,7 @@ function App() {
       <TodoList>
 
         {/* crear un array en base otro array de objetos */}
-        {defaultTodos.map(todo => (
+        {shearchedTodos.map(todo => (
           <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
         ))}
 
