@@ -12,6 +12,11 @@ import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList/index.tsx";
 import React from "react";
 
+interface defautlTodosModel {
+  text: string;
+  completed: boolean;
+}
+
 function App() {
   const [Data, setData] = useState(["uno", "dos", "tres"]);
   // const [isLoading, setIsLoading] = useState(false);
@@ -72,37 +77,53 @@ function App() {
   const [searchValue, setSearchValue] = React.useState("");
   console.log("Los usuarios han escrito: " + searchValue + " ");
 
-  const defaultTodos = [
+  //defaultTodosModel defaultTodos[] = new defaultTodosModel();
+
+  let firstDefaultTodos = [
     { text: "Cortar cebolla", completed: true },
     { text: "Tomar el cursso de intro a React", completed: false },
     { text: "Llorar con la Llorona", completed: false },
     { text: "Nuevo", completed: true },
   ];
 
+  let parsedTodos = localStorage.getItem("TODO_V1");
+  const defaultTodos = JSON.parse(parsedTodos || JSON.stringify(firstDefaultTodos));
+
+  if (defaultTodos.length)
+    localStorage.setItem("TODO_V1", JSON.stringify(defaultTodos));
+
+
+
   const [todos, setTodos] = React.useState(defaultTodos);
-  const completedTodos = todos.filter((todo) => !!todo.completed).length;
+  const completedTodos = todos.filter(
+    (todo: defautlTodosModel) => !!todo.completed
+  ).length;
   const totalTodos = todos.length;
 
-  const shearchedTodos = todos.filter((todo) => {
+  const shearchedTodos = todos.filter((todo: defautlTodosModel) => {
     const todoText = todo.text.toLowerCase();
     const searchText = searchValue.toLowerCase();
     return todoText.includes(searchText);
   });
 
-  const completeTodo = (text:string) => {
-    const newTodos = [...todos]
+  const saveTodos = (newTodos: defautlTodosModel) => {
+    localStorage.setItem("TODO_V1", JSON.stringify(newTodos));
+    setTodos(newTodos);
+  };
+
+  const completeTodo = (text: string) => {
+    const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos)
-  }
+    saveTodos(newTodos);
+  };
 
-
-  const deleteTodo = (text:string) => {
-    const newTodos = [...todos]
+  const deleteTodo = (text: string) => {
+    const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos)
-  }
+    saveTodos(newTodos);
+  };
   return (
     <>
       {/* <Card>
@@ -122,7 +143,6 @@ function App() {
         propSetSearchValue={setSearchValue}
       />
 
-
       <TodoList>
         {/* crear un array en base otro array de objetos */}
         {shearchedTodos.map((todo) => (
@@ -130,8 +150,8 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
-            onComplete = { () => completeTodo (todo.text) }
-            onDelete={ () => deleteTodo (todo.text) }
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
           />
         ))}
 
