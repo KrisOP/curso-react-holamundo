@@ -106,7 +106,7 @@ function App() {
     return todoText.includes(searchText);
   });
 
-  const saveTodos = (newTodos: defautlTodosModel) => {
+  const saveTodos = (newTodos: defautlTodosModel[]) => {
     localStorage.setItem("TODO_V1", JSON.stringify(newTodos));
     setTodos(newTodos);
   };
@@ -145,7 +145,7 @@ function App() {
 
       <TodoList>
         {/* crear un array en base otro array de objetos */}
-        {shearchedTodos.map((todo) => (
+        {shearchedTodos.map((todo: defautlTodosModel) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
