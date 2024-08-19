@@ -24,7 +24,7 @@ function TodoCounter(props: TodoCounter) {
 
   return completed === total ? (
     <h1 className="TodoCounter">
-      ¡Felicidades! Has completado todas las tareas
+      ¡Felicidades! Has completado todas las tareas 
     </h1>
   ) : (
     <h1 className="TodoCounter">

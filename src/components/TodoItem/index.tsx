@@ -1,4 +1,6 @@
 import "./todoitem.css";
+import { BiCircle, BiCheckCircle, BiTrashAlt   } from "react-icons/bi";
+
 interface TodoItem {
   text: string;
   completed: boolean;
@@ -10,18 +12,20 @@ function TodoItem(props: TodoItem) {
   const { text, completed, onComplete, onDelete } = props;
   return (
     <li className="TodoItem">
-      <span
+
+      <span 
         className={`Icon Icon-check ${completed && "Icon-check--active"}`}
         onClick={onComplete}
       >
-        V
+       {completed ? <BiCheckCircle /> : <BiCircle />}
+         
       </span>
       <p className={`TodoItem-p ${completed && "TodoItem-p--complete"}`}>
         {text}
       </p>
       <span className="Icon Icon-delete"
       onClick={onDelete}
-      >X</span>
+      ><BiTrashAlt /></span>
     </li>
   );
 }
