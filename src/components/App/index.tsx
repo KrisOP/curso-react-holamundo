@@ -5,15 +5,12 @@ import Card, { CardBody } from "../Card.tsx";
 import Button from "../Button/index.tsx";
 import List from "../List.tsx";
 import { useState } from "react";
-import { TodoItem } from "../TodoItem/index.tsx";
-import CreateTodoButton from "../CreateTodoButton/index.tsx";
-import { TodoCounter } from "../TodoCounter/index.tsx";
-import { TodoSearch } from "../TodoSearch/index.tsx";
-import { TodoList } from "../TodoList/index.tsx";
+
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage.ts";
 
 import { DefaultTodosModel } from "../../shared/model/defaultTodos.model.ts";
+import { AppUI } from "./AppUI.tsx";
 
 function App() {
   const [Data, setData] = useState(["uno", "dos", "tres"]);
@@ -110,45 +107,18 @@ function App() {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
+ 
   return (
-    <>
-      {/* <Card>
-        <Button isLoading={true} onClick={addMinion}>
-          Agregar
-        </Button>
-        <Button isLoading={false} onClick={handleDelete}>
-          Eliminar
-        </Button>
-        <List data={Data} />
-      </Card> */}
-
-      <TodoCounter total={totalTodos} completed={completedTodos} />
-
-      <TodoSearch
-        propSearchValue={searchValue}
-        propSetSearchValue={setSearchValue}
-      />
-
-      <TodoList>
-        {/* crear un array en base otro array de objetos */}
-        {shearchedTodos.map((todo: DefaultTodosModel) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-
-        {/* <TodoItem />
-        <TodoItem />
-        <TodoItem /> */}
-      </TodoList>
-
-      <CreateTodoButton />
-    </>
-  );
+    <AppUI
+      totalTodos={totalTodos}
+      completedTodos={completedTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      shearchedTodos={shearchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
+  ) 
 }
 
 export default App;
