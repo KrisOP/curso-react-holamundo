@@ -17,7 +17,7 @@ function TodoSearch(props: TodoSearchProps) {
       value={propSearchValue}
       onChange={(event) => {
         propSetSearchValue(event.target.value);
-        console.log(event.target.value);
+        //console.log(event.target.value);
       }}
     />
   );

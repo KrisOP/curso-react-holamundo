@@ -70,7 +70,7 @@ function App() {
   const handleDelete = () => setData(Data.slice(0, -1));
 
   const [searchValue, setSearchValue] = React.useState("");
-  console.log("Los usuarios han escrito: " + searchValue + " ");
+  //console.log("Los usuarios han escrito: " + searchValue + " ");
 
   //defaultTodosModel defaultTodos[] = new defaultTodosModel();
 
@@ -81,7 +81,25 @@ function App() {
     { text: "Nuevo", completed: true },
   ];
 
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", firstDefaultItems);
+  //renombrando los parametros item a todos y saveItem a saveTodos
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage("TODOS_V1", firstDefaultItems);
+
+  // React.useEffect(() => {
+  //   console.log("useEffect");
+  // }, []);
+
+  //se va a ejecutar cuando el array 'todos' cambie
+
+  // React.useEffect(() => {
+  //   console.log("useEffect");
+  // }, [todos]);
+
+  // console.log("log 3");
 
   const completedTodos = todos.filter(
     (todo: DefaultTodosModel) => !!todo.completed
@@ -107,9 +125,11 @@ function App() {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
- 
+
   return (
     <AppUI
+      loading={loading}
+      error={error}
       totalTodos={totalTodos}
       completedTodos={completedTodos}
       searchValue={searchValue}
@@ -118,7 +138,7 @@ function App() {
       completeTodo={completeTodo}
       deleteTodo={deleteTodo}
     />
-  ) 
+  );
 }
 
 export default App;

@@ -13,10 +13,14 @@ interface AppUIProps {
   shearchedTodos: DefaultTodosModel[];
   completeTodo: (text: string) => void;
   deleteTodo: (text: string) => void;
+  loading: boolean;
+  error: boolean;
 }
 
 function AppUI(props: AppUIProps) {
   const {
+    loading,
+    error,
     totalTodos,
     completedTodos,
     searchValue,
@@ -46,6 +50,10 @@ function AppUI(props: AppUIProps) {
       />
 
       <TodoList>
+          {loading && <p>Cargando...</p>}
+          {error && <p>Hubo un error...</p>}
+          {(!loading && !shearchedTodos.length) && <p>No hay tareas</p>}
+
         {/* crear un array en base otro array de objetos */}
         {shearchedTodos.map((todo: DefaultTodosModel) => (
           <TodoItem
