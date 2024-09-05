@@ -19,7 +19,8 @@ function useLocalStorage(itemName:string, initialValue:any){
   const [error, setError] = React.useState(false);
 
     React.useEffect(() => { 
-      try {
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2752928364.
+      setTimeout(() => {try {
         let parsedItems = localStorage.getItem(itemName);
       const defaultItems = JSON.parse(parsedItems || JSON.stringify(initialValue));
     
@@ -39,7 +40,7 @@ function useLocalStorage(itemName:string, initialValue:any){
       catch (error) {
         setError(true);
         setLoading(false)
-      }
+      } },2000) 
 
       //para que se ejecute solo una vez el render al cargar la app
     }, []);

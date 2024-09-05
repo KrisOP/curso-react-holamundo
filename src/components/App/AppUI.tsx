@@ -4,6 +4,7 @@ import { TodoCounter } from "../TodoCounter/index.tsx";
 import { TodoSearch } from "../TodoSearch/index.tsx";
 import { TodoList } from "../TodoList/index.tsx";
 import { DefaultTodosModel } from "../../shared/model/defaultTodos.model.ts";
+import { TodosLoading } from "../TodosLoading/index.tsx";
 
 interface AppUIProps {
   totalTodos: number;
@@ -50,7 +51,8 @@ function AppUI(props: AppUIProps) {
       />
 
       <TodoList>
-          {loading && <p>Cargando...</p>}
+          {loading && <TodosLoading/>  }
+          
           {error && <p>Hubo un error...</p>}
           {(!loading && !shearchedTodos.length) && <p>No hay tareas</p>}
 
