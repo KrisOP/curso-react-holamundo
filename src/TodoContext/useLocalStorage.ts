@@ -1,6 +1,6 @@
 
 import React from "react";
-import { DefaultTodosModel } from "../../shared/model/defaultTodos.model";
+import { DefaultTodosModel } from "../shared/model/defaultTodos.model";
 
 interface defautlTodosModel {
     text: string;

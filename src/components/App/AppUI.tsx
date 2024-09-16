@@ -5,31 +5,28 @@ import { TodoSearch } from "../TodoSearch/index.tsx";
 import { TodoList } from "../TodoList/index.tsx";
 import { DefaultTodosModel } from "../../shared/model/defaultTodos.model.ts";
 import { TodosLoading } from "../TodosLoading/index.tsx";
+import { TodoContext } from "../../TodoContext/index.tsx";
 
-interface AppUIProps {
-  totalTodos: number;
-  completedTodos: number;
-  searchValue: string;
-  setSearchValue: (value: string) => void;
-  shearchedTodos: DefaultTodosModel[];
-  completeTodo: (text: string) => void;
-  deleteTodo: (text: string) => void;
-  loading: boolean;
-  error: boolean;
-}
 
-function AppUI(props: AppUIProps) {
-  const {
-    loading,
-    error,
-    totalTodos,
-    completedTodos,
-    searchValue,
-    setSearchValue,
-    shearchedTodos,
-    completeTodo,
-    deleteTodo,
-  } = props;
+
+
+TodoContext  
+
+
+function AppUI(
+  //props: AppUIProps
+) {
+  // const {
+  //   loading,
+  //   error,
+  //   totalTodos,
+  //   completedTodos,
+  //   searchValue,
+  //   setSearchValue,
+  //   shearchedTodos,
+  //   completeTodo,
+  //   deleteTodo,
+  // } = props;
 
   return (
     <>
@@ -43,34 +40,52 @@ function AppUI(props: AppUIProps) {
             <List data={Data} />
           </Card> */}
 
-      <TodoCounter total={totalTodos} completed={completedTodos} />
+      {/* <TodoCounter total={totalTodos} completed={completedTodos} />
 
       <TodoSearch
         propSearchValue={searchValue}
         propSetSearchValue={setSearchValue}
-      />
+      /> */}
 
-      <TodoList>
-          {loading && <TodosLoading/>  }
-          
-          {error && <p>Hubo un error...</p>}
-          {(!loading && !shearchedTodos.length) && <p>No hay tareas</p>}
+        <TodoCounter/>
 
-        {/* crear un array en base otro array de objetos */}
-        {shearchedTodos.map((todo: DefaultTodosModel) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
+        <TodoSearch/>
 
-        {/* <TodoItem />
-            <TodoItem />
-            <TodoItem /> */}
-      </TodoList>
+          <TodoContext.Consumer>
+            {(
+              {
+                loading,
+                error,
+                shearchedTodos,
+                completeTodo,
+                deleteTodo
+              }
+            )=>(
+              <TodoList>
+              {loading && <TodosLoading/>  }
+              
+              {error && <p>Hubo un error...</p>}
+              {(!loading && !shearchedTodos.length) && <p>No hay tareas</p>}
+  
+            {/* crear un array en base otro array de objetos */}
+            {shearchedTodos.map((todo: DefaultTodosModel) => (
+              <TodoItem
+                key={todo.text}
+                text={todo.text}
+                completed={todo.completed}
+                onComplete={() => completeTodo(todo.text)}
+                onDelete={() => deleteTodo(todo.text)}
+              />
+            ))}
+  
+            {/* <TodoItem />
+                <TodoItem />
+                <TodoItem /> */}
+              </TodoList>
+            )}
+          </TodoContext.Consumer>
+
+      
 
       <CreateTodoButton />
     </>

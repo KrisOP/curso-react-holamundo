@@ -1,13 +1,15 @@
+import React from "react";
 import "./TodoCounter.css";
+import { TodoContext } from "../../TodoContext";
 
 interface TodoCounter {
   total: number;
   completed: number;
 }
 
-function TodoCounter(props: TodoCounter) {
-  const { total, completed } = props;
-
+function TodoCounter() {
+  
+ const { completedTodos : completed , totalTodos : total } = React.useContext(TodoContext)
   // if (completed === total) {
   //   return (
   //     <h1 className="TodoCounter">
