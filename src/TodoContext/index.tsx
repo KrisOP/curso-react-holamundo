@@ -13,6 +13,8 @@ interface TodoContextType {
   shearchedTodos: any[];
   completeTodo: (text: string) => void;
   deleteTodo: (text: string) => void;
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 
@@ -26,6 +28,8 @@ const defaultContext: TodoContextType = {
   shearchedTodos: [],
   completeTodo: () => {},
   deleteTodo: () => {},
+  openModal : false,
+  setOpenModal: () => {}
 };
 
 
@@ -98,6 +102,8 @@ function TodoProvider(props: ContextProps){
   const handleDelete = () => setData(Data.slice(0, -1));
 
   const [searchValue, setSearchValue] = React.useState("");
+
+  const [openModal, setOpenModal] = React.useState(true);
   //console.log("Los usuarios han escrito: " + searchValue + " ");
 
   //defaultTodosModel defaultTodos[] = new defaultTodosModel();
@@ -164,7 +170,9 @@ function TodoProvider(props: ContextProps){
         setSearchValue,
         shearchedTodos,
         completeTodo,
-        deleteTodo
+        deleteTodo, 
+        openModal,
+        setOpenModal
        }}> 
             {children}
         </TodoContext.Provider>

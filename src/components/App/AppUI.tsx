@@ -6,16 +6,23 @@ import { TodoList } from "../TodoList/index.tsx";
 import { DefaultTodosModel } from "../../shared/model/defaultTodos.model.ts";
 import { TodosLoading } from "../TodosLoading/index.tsx";
 import { TodoContext } from "../../TodoContext/index.tsx";
-
-
-
-
-TodoContext  
-
+import React from "react";
+import Modal from "../Modal/index.tsx";
 
 function AppUI(
   //props: AppUIProps
 ) {
+
+  const {
+    loading,
+                error,
+                shearchedTodos,
+                completeTodo,
+                deleteTodo,
+                openModal,
+                setOpenModal
+  } = React.useContext(TodoContext);
+
   // const {
   //   loading,
   //   error,
@@ -51,17 +58,7 @@ function AppUI(
 
         <TodoSearch/>
 
-          <TodoContext.Consumer>
-            {(
-              {
-                loading,
-                error,
-                shearchedTodos,
-                completeTodo,
-                deleteTodo
-              }
-            )=>(
-              <TodoList>
+        <TodoList>
               {loading && <TodosLoading/>  }
               
               {error && <p>Hubo un error...</p>}
@@ -77,17 +74,15 @@ function AppUI(
                 onDelete={() => deleteTodo(todo.text)}
               />
             ))}
-  
-            {/* <TodoItem />
-                <TodoItem />
-                <TodoItem /> */}
               </TodoList>
-            )}
-          </TodoContext.Consumer>
-
-      
 
       <CreateTodoButton />
+
+     {openModal && (
+       <Modal>
+       Funcionalidad de agregar TODO
+     </Modal>
+     )}
     </>
   );
 }
