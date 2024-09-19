@@ -1,18 +1,23 @@
-import "./createtodobutton.css";
+import './createtodobutton.css';
 
-function CreateTodoButton() {
+interface props {
+  setOpenModal: (open: boolean | ((prevState: boolean) => boolean)) => void;
+}
+
+function CreateTodoButton(propsIn: props) {
+
+  const { setOpenModal } = propsIn;
+
   return (
     <button
       className="CreateTodoButton"
-      onClick={(event) => {
-        console.log("Hola mundo");
-        console.log(event)
-      }}
-    >
-      {" "}
-      +
-    </button>
+      onClick={
+        () => {
+          setOpenModal(state => !state);
+        }
+      }
+    >+</button>
   );
 }
 
-export default CreateTodoButton;
+export default  CreateTodoButton ;

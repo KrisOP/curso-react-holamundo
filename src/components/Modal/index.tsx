@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import './modal.css';
 interface ContextProps {
     children: ReactNode;
   }
@@ -18,7 +19,7 @@ function Modal (props: ContextProps){
 
     return createPortal (
         
-            <div className='modal'>
+            <div className='ModalBackground'>
                {children}
             </div>,
             modalRoot

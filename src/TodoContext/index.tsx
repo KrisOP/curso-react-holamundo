@@ -103,7 +103,7 @@ function TodoProvider(props: ContextProps){
 
   const [searchValue, setSearchValue] = React.useState("");
 
-  const [openModal, setOpenModal] = React.useState(true);
+  const [openModal, setOpenModal] = React.useState(false);
   //console.log("Los usuarios han escrito: " + searchValue + " ");
 
   //defaultTodosModel defaultTodos[] = new defaultTodosModel();
