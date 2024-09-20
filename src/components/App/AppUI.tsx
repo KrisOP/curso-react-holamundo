@@ -6,8 +6,10 @@ import { TodoList } from "../TodoList/index.tsx";
 import { DefaultTodosModel } from "../../shared/model/defaultTodos.model.ts";
 import { TodosLoading } from "../TodosLoading/index.tsx";
 import { TodoContext } from "../../TodoContext/index.tsx";
+//import { TodoForm } from "../../TodoForm/index.tsx";
 import React from "react";
 import Modal from "../Modal/index.tsx";
+import {TodoForm} from "../TodoForm/index.tsx";
 
 function AppUI(
   //props: AppUIProps
@@ -82,7 +84,7 @@ function AppUI(
 
      {openModal && (
        <Modal>
-       Funcionalidad de agregar TODO
+     <TodoForm />
      </Modal>
      )}
     </>

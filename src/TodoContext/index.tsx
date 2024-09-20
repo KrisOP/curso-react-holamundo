@@ -11,6 +11,7 @@ interface TodoContextType {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   shearchedTodos: any[];
+  addTodo: (text: string) => void;
   completeTodo: (text: string) => void;
   deleteTodo: (text: string) => void;
   openModal: boolean;
@@ -26,6 +27,7 @@ const defaultContext: TodoContextType = {
   searchValue: "",
   setSearchValue: () => {},
   shearchedTodos: [],
+  addTodo: () => {},
   completeTodo: () => {},
   deleteTodo: () => {},
   openModal : false,
@@ -146,6 +148,17 @@ function TodoProvider(props: ContextProps){
     return todoText.includes(searchText);
   });
 
+
+  const addTodo = (text: string) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      completed: false,
+      text
+    });
+    saveTodos(newTodos);
+
+  }
+
   const completeTodo = (text: string) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
@@ -169,6 +182,7 @@ function TodoProvider(props: ContextProps){
         searchValue,
         setSearchValue,
         shearchedTodos,
+        addTodo,
         completeTodo,
         deleteTodo, 
         openModal,
