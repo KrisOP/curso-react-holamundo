@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import { useLocalStorage } from './useLocalStorage';
 import { DefaultTodosModel } from '../shared/model/defaultTodos.model';
 
@@ -47,7 +47,7 @@ function TodoProvider(props: ContextProps){
 
     const { children } = props;
 
-    const [Data, setData] = useState(["uno", "dos", "tres"]);
+    //const [Data, setData] = useState(["uno", "dos", "tres"]);
   // const [isLoading, setIsLoading] = useState(false);
 
   // const handleClick = () => setIsLoading(!isLoading);
@@ -99,9 +99,9 @@ function TodoProvider(props: ContextProps){
   //   </>
   // );
 
-  const addMinion = () => setData([...Data, "Minion"]);
+ // const addMinion = () => setData([...Data, "Minion"]);
 
-  const handleDelete = () => setData(Data.slice(0, -1));
+  //const handleDelete = () => setData(Data.slice(0, -1));
 
   const [searchValue, setSearchValue] = React.useState("");
 

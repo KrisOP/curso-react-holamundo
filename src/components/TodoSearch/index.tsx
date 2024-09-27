@@ -1,11 +1,11 @@
-import React, { ReactElement, ReactNode } from "react";
+import React from "react";
 
 import "./todosearch.css";
 import { TodoContext } from "../../TodoContext";
-interface TodoSearchProps {
-  propSearchValue: string;
-  propSetSearchValue: (value: string) => void;
-}
+// interface TodoSearchProps {
+//   propSearchValue: string;
+//   propSetSearchValue: (value: string) => void;
+// }
 
 function TodoSearch() {
   const { searchValue: propSearchValue, setSearchValue: propSetSearchValue } = React.useContext(TodoContext)
